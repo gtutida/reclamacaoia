@@ -84,3 +84,10 @@ def generate_response():
         return jsonify({"error": "Erro interno do servidor."}), 500
 
 return jsonify({"error": "Erro interno do servidor."}), 500
+
+
+if __name__ == '__main__':
+    import os
+    # O GCR define a variável PORT. O Flask precisa usá-la.
+    port = int(os.environ.get('PORT', 8080))
+    app.run(host='0.0.0.0', port=port)
