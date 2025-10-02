@@ -1,0 +1,4 @@
+# .gitignore
+.env           # NUNCA ENVIE SUA CHAVE!
+__pycache__/
+*.pyc

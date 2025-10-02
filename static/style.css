@@ -1,0 +1,204 @@
+/* Paleta: #1a1a2e (Fundo Escuro), #0f0f1b (Fundo Container), #e0e0e0 (Texto Claro), #00a388 (NOVO VERDE DE DESTAQUE) */
+
+/* GERAL E FUNDO (DARK MODE) */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #1a1a2e; /* Fundo Escuro Principal */
+    color: #e0e0e0; /* Texto Claro */
+    margin: 0;
+    padding: 40px 20px;
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.container {
+    background-color: #0f0f1b; /* Fundo Container mais escuro que o body */
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+    max-width: 650px;
+    width: 100%;
+    border: 1px solid #00a38830; /* Borda sutil de IA com o novo verde */
+}
+
+/* TÍTULOS */
+h1 {
+    color: #e0e0e0;
+    text-align: center;
+    font-weight: 300;
+    font-size: 2.5em;
+    margin-bottom: 5px;
+}
+
+.subtitle {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #999;
+}
+
+/* GRUPO DE INPUTS */
+.input-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #00a388; /* NOVO: Cor de destaque para labels */
+}
+
+input[type="date"], textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #333;
+    border-radius: 6px;
+    background-color: #1a1a2e;
+    color: #e0e0e0;
+    box-sizing: border-box;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+input[type="date"]:focus, textarea:focus {
+    border-color: #00a388; /* NOVO: Foco com cor de IA */
+    box-shadow: 0 0 8px rgba(0, 163, 136, 0.4); /* NOVO: Sombra do foco */
+    outline: none;
+}
+
+#char-count {
+    text-align: right;
+    font-size: 0.85em;
+    color: #555;
+    margin-top: 4px;
+}
+
+/* BOTÃO */
+button {
+    background-color: #00a388; /* NOVO: Verde de Destaque */
+    color: #0f0f1b;
+    font-weight: bold;
+    padding: 12px 15px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.1em;
+    width: 100%;
+    transition: background-color 0.3s, transform 0.2s;
+    box-shadow: 0 4px 15px rgba(0, 163, 136, 0.3); /* NOVO: Sombra do botão */
+}
+
+button:hover {
+    background-color: #008f77; /* Um tom de verde ligeiramente mais escuro para o hover */
+    transform: translateY(-2px);
+}
+
+button:disabled {
+    background-color: #555;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+#loading-status {
+    text-align: center;
+    margin-top: 15px;
+    color: #00a388; /* NOVO: Cor de destaque */
+    font-style: italic;
+}
+
+/* SEPARADOR E TÍTULO H2 */
+hr {
+    border: 0;
+    height: 1px;
+    background: #333;
+    margin: 30px 0;
+}
+
+h2 {
+    color: #e0e0e0;
+    font-weight: 400;
+    margin-top: 0;
+}
+
+/* ITENS DO HISTÓRICO */
+.complaint-item {
+    background-color: #1a1a2e;
+    border: 1px solid #333;
+    padding: 18px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    position: relative;
+}
+
+.complaint-item strong {
+    display: block;
+    margin-bottom: 5px;
+    color: #00a388; /* NOVO: Cor de destaque para a data */
+    font-size: 0.9em;
+}
+
+/* RESPOSTA DA IA (DESTAQUE) */
+.ai-response {
+    margin-top: 12px;
+    padding: 15px;
+    background-color: #2a2a44; 
+    border-left: 5px solid #00a388; /* NOVO: Borda em verde */
+    border-radius: 4px;
+    font-style: italic;
+    color: #b0e0e6;
+}
+
+.ai-response strong {
+    color: #00a388; /* NOVO: Cor de destaque no rótulo da IA */
+    display: block;
+    margin-bottom: 5px;
+    font-size: 1em;
+    font-weight: 600;
+}
+
+.ai-tag {
+    background-color: #00a388; /* NOVO: Cor do tag "AI" no título */
+    color: #0f0f1b;
+    padding: 3px 10px;
+    border-radius: 4px;
+    font-size: 0.7em;
+    vertical-align: middle;
+    font-weight: bold;
+}
+
+/* BOTÃO DE EXCLUSÃO */
+.delete-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #cc0000; 
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    font-size: 0.8em;
+    font-weight: bold;
+    cursor: pointer;
+    line-height: 1;
+    transition: background-color 0.2s;
+}
+
+.delete-btn:hover {
+    background-color: #a00000;
+}
+
+/* style.css - Adicione no final */
+
+.site-logo {
+    display: block; /* Garante que a logo fique em sua própria linha */
+    max-width: 400px; /* Define a largura máxima (ajuste este valor) */
+    height: auto; /* Mantém a proporção da imagem */
+    margin: 0 auto 15px auto; /* Centraliza horizontalmente e adiciona margem inferior */
+}
+
+/* OPCIONAL: Se você removeu o H1, pode querer ajustar o subtítulo */
+.subtitle {
+    margin-top: 10px; /* Adiciona um pequeno espaço após a logo */
+}

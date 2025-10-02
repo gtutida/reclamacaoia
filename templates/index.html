@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reclama AI - A IA que te Dá Razão</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <div class="container">
+        <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo Reclama AI" class="site-logo"> 
+        <p class="subtitle">Niguém aguenta mais ouvir suas reclamações? Estamos aqui para isso!</p>
+
+        <form id="complaint-form">
+            <div class="input-group">
+                <label for="complaint-date">Data:</label>
+                <input type="date" id="complaint-date" required>
+            </div>
+
+            <div class="input-group">
+                <label for="complaint-text">Sua Reclamação:</label>
+                <textarea id="complaint-text" maxlength="500" rows="5" placeholder="Hoje estou revoltado(a) porque..."
+                    required></textarea>
+                <div id="char-count">500</div>
+            </div>
+
+            <button type="submit" id="submit-button">Argumente a meu favor!</button>
+            <p id="loading-status" style="display:none; color: #cc0000;">Gerando argumentos para concordar com você!
+            </p>
+        </form>
+
+        <hr>
+
+        <h2>Histórico de Reclamações Validadas</h2>
+        <div id="complaints-history">
+            <p>Seu histórico de desabafos e a validação da IA aparecerão aqui.</p>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+
+</html>
