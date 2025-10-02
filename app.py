@@ -83,5 +83,4 @@ def generate_response():
         print(f"Erro inesperado: {e}")
         return jsonify({"error": "Erro interno do servidor."}), 500
 
-if __name__ == '__main__':
-    app.run() # APENAS ISSO
+return jsonify({"error": "Erro interno do servidor."}), 500
