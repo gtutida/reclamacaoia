@@ -11,5 +11,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copia todo o seu código Flask para o contêiner
 COPY . .
 
-# Comando final para iniciar o servidor Gunicorn, usando a porta dinâmica do Cloud Run
-CMD ["gunicorn", "--bind", "0.0.0.0:8080", "app:app"]
+# Dockerfile - Comando final de execução
+# O GCR injeta o valor de $PORT na variável
+CMD exec gunicorn --bind :$PORT --workers 1 app:app
