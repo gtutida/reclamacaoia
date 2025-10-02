@@ -84,6 +84,4 @@ def generate_response():
         return jsonify({"error": "Erro interno do servidor."}), 500
 
 if __name__ == '__main__':
-    print("--- Servidor Flask para Diário de Reclamações AI ---")
-    print("Acesse: http://127.0.0.1:5000/")
-    app.run(debug=True)
+    app.run() # APENAS ISSO
