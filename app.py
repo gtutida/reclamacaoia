@@ -1,32 +1,27 @@
-# app.py - Versão FINAL para Resolver o Erro de Leitura
+# app.py - Versão Final e Estável para Cloud Run
 
-# 1. CARREGAMENTO DE VARIÁVEIS (PRIORIDADE MÁXIMA)
+# 1. IMPORTS E CARREGAMENTO DE VARIÁVEIS (PRIORIDADE MÁXIMA)
 import os 
 from dotenv import load_dotenv
 
-load_dotenv(override=True, encoding='latin-1') 
+load_dotenv() 
 
-# 2. DEFINIÇÃO DA CHAVE E DO CLIENTE (DEVE SER FEITA ANTES DAS ROTAS)
 from google import genai
 from google.genai.errors import APIError
-
-# Tenta ler a chave API AGORA (lida do arquivo .env)
-GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY") 
-
-try:
-    # Tenta inicializar o cliente
-    client = genai.Client(api_key=GEMINI_API_KEY)
-except Exception as e:
-    # Isso capturará o erro se a chave estiver vazia ou inválida
-    print(f"Erro ao inicializar o cliente Gemini: {e}")
-    client = None
-
-# 3. O RESTO DOS IMPORTS
 from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS
 
+# 2. DEFINIÇÃO DA CHAVE E DO CLIENTE
+GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY") 
 
-# 4. DEFINIÇÃO DO APLICATIVO FLASK (AGORA PODE SER DEFINIDO)
+try:
+    # Tenta inicializar o cliente. Falha se a chave for inválida/vazia.
+    client = genai.Client(api_key=GEMINI_API_KEY)
+except Exception as e:
+    print(f"Erro ao inicializar o cliente Gemini: {e}")
+    client = None
+
+# 3. DEFINIÇÃO DO APLICATIVO FLASK
 app = Flask(__name__, template_folder='templates', static_folder='static')
 CORS(app) 
 
@@ -42,6 +37,7 @@ Sua resposta deve:
 """
 
 # --- ROTAS DO SERVIDOR ---
+
 @app.route('/')
 def index():
     """Rota para servir o arquivo index.html."""
@@ -51,6 +47,7 @@ def index():
 def generate_response():
     """Rota que chama a API Gemini para gerar a resposta."""
     if not client:
+        # Retorna erro se a inicialização da API falhou no início do app
         return jsonify({"error": "Configuração da API Gemini falhou."}), 500
 
     data = request.json
@@ -77,16 +74,12 @@ def generate_response():
         })
 
     except APIError as e:
+        # Erro de comunicação durante a requisição
         print(f"Erro da API Gemini: {e}")
         return jsonify({"error": "Erro ao comunicar com a IA. Tente mais tarde."}), 500
     except Exception as e:
+        # Erro genérico de Python na rota
         print(f"Erro inesperado: {e}")
         return jsonify({"error": "Erro interno do servidor."}), 500
-
-return jsonify({"error": "Erro interno do servidor."}), 500
-
-# app.py - O ARQUIVO DEVE TERMINAR APÓS ESTE BLOCO DE EXCEÇÃO
-
-    except Exception as e:
-        print(f"Erro inesperado: {e}")
-        return jsonify({"error": "Erro interno do servidor."}), 500
+        
+# O ARQUIVO DEVE TERMINAR AQUI. O GUNICORN SE ENCARREGA DO RESTO.
