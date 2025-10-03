@@ -89,9 +89,8 @@ return jsonify({"error": "Erro interno do servidor."}), 500
 # app.py - Corrija o bloco final para ESCUTAR NA PORTA 8080
 
 if __name__ == '__main__':
-    # O GCR define a porta 8080 internamente
-    # Vamos garantir que o Flask escute exatamente na porta que o GCR espera.
-    
-    
-    # IMPORTANTE: Forçar a porta 8080 é a solução mais comum no GCR
-    app.run(host='0.0.0.0', port=8080) # <--- Mude para a porta 8080 fixa!
+    import os
+    # O GCR define a porta na variável PORT, não é a 8080!
+    # A GCR exige que o código leia essa variável para ligar.
+    port = int(os.environ.get('PORT', 8080))
+    app.run(host='0.0.0.0', port=port)
