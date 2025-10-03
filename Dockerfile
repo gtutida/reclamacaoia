@@ -17,4 +17,4 @@ COPY . .
 # Dockerfile - Comando de execução final e mais robusto
 # O GCR define a porta na variável PORT
 # Remova todas as linhas de comentário anteriores (deixe o código limpo)
-CMD exec gunicorn --bind :$PORT --workers 1 app:app
+CMD ["python", "-m", "gunicorn", "--bind", "0.0.0.0:8080", "app:app"]
