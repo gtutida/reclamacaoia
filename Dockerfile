@@ -14,6 +14,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 # 4. Copia todo o seu código Flask (incluindo app.py) para o contêiner
 COPY . .
 
-# Dockerfile - Comando final em formato JSON Array (CORRETO)
-# O Cloud Run exige que a linha CMD seja escrita desta forma para execução
-CMD ["gunicorn", "--bind", "0.0.0.0:8080", "app:app"] 
+# Dockerfile - Comando de execução final e mais robusto
+# O GCR define a porta na variável PORT
+# Remova todas as linhas de comentário anteriores (deixe o código limpo)
+CMD exec gunicorn --bind :$PORT --workers 1 app:app

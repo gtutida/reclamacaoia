@@ -85,12 +85,8 @@ def generate_response():
 
 return jsonify({"error": "Erro interno do servidor."}), 500
 
+# app.py - O ARQUIVO DEVE TERMINAR APÓS ESTE BLOCO DE EXCEÇÃO
 
-# app.py - Corrija o bloco final para ESCUTAR NA PORTA 8080
-
-if __name__ == '__main__':
-    import os
-    # O GCR define a porta na variável PORT, não é a 8080!
-    # A GCR exige que o código leia essa variável para ligar.
-    port = int(os.environ.get('PORT', 8080))
-    app.run(host='0.0.0.0', port=port)
+    except Exception as e:
+        print(f"Erro inesperado: {e}")
+        return jsonify({"error": "Erro interno do servidor."}), 500
