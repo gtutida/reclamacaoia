@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const MAX_CHARS = 500;
 
     // A URL onde o seu servidor Python (Flask) está rodando
-    const API_URL = 'http://127.0.0.1:5000/generate-response';
+   const API_URL = '/generate-response';
 
     // --- 1. Contador de Caracteres ---
     function updateCharCount() {
