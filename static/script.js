@@ -41,9 +41,12 @@ document.addEventListener('DOMContentLoaded', () => {
             item.classList.add('complaint-item');
             
             // Formata a data para uma melhor visualização
-            const formattedDate = new Date(complaint.date).toLocaleDateString('pt-BR', {
-                day: '2-digit', month: '2-digit', year: 'numeric'
-            });
+           const dateObj = new Date(complaint.date + 'T00:00:00'); // Adiciona T00:00:00 para evitar fuso horário
+const formattedDate = dateObj.toLocaleDateString('pt-BR', {
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric'
+});
 
             item.innerHTML = `
                 <strong>${formattedDate}</strong>
